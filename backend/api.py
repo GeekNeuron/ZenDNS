@@ -1,38 +1,27 @@
-from fastapi import FastAPI, Query
-from fastapi.responses import JSONResponse, StreamingResponse
-import sqlite3
-import csv
-import io
+# File: backend/api.py
 
-app = FastAPI()
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
-def query_logs(q=None, ip=None):
-    conn = sqlite3.connect("dns_logs.db")
-    conn.row_factory = sqlite3.Row
-    cur = conn.cursor()
-    sql = "SELECT * FROM logs WHERE 1=1"
-    params = []
+# Routers
+from analytics_api import router as analytics_router
+# from filters_api import router as filters_router  ← اضافه می‌شود در مرحله بعد
 
-    if q:
-        sql += " AND query LIKE ?"
-        params.append(f"%{q}%")
-    if ip:
-        sql += " AND client = ?"
-        params.append(ip)
+app = FastAPI(title="ZenDNS API", version="1.0")
 
-    sql += " ORDER BY id DESC LIMIT 300"
-    rows = cur.execute(sql, params).fetchall()
-    return [dict(r) for r in rows]
+# Optional: برای پشتیبانی از frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-@app.get("/logs")
-def get_logs(q: str = Query(None), ip: str = Query(None)):
-    return query_logs(q, ip)
+# Root
+@app.get("/")
+def root():
+    return {"message": "ZenDNS API root"}
 
-@app.get("/export")
-def export_csv():
-    logs = query_logs()
-    output = io.StringIO()
-    writer = csv.DictWriter(output, fieldnames=["timestamp", "client", "query", "blocked"])
-    writer.writeheader()
-    writer.writerows(logs)
-    return StreamingResponse(io.BytesIO(output.getvalue().encode()), media_type="text/csv")
+# Routers
+app.include_router(analytics_router, prefix="/analytics")
+# app.include_router(filters_router, prefix="/filters") ← بعداً فعال می‌شود
