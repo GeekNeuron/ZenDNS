@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=ZenDNS DNS Changer
-Exec=sh -c 'chmod +x ./dns_changer.sh && ./dns_changer.sh'
+Exec=sh -c 'chmod +x /usr/local/bin/zendns-dns-changer && /usr/local/bin/zendns-dns-changer'
 Icon=utilities-terminal
 Terminal=true
 Type=Application
