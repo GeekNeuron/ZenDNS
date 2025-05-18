@@ -1,1 +1,41 @@
-Placeholder for docker-compose.prod.yml
+version: '3.9'
+
+services:
+  adguard:
+    image: adguard/adguardhome:latest
+    container_name: adguardhome
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+      - "443:443"
+      - "80:80"
+    volumes:
+      - ./adguard/work:/opt/adguardhome/work
+      - ./adguard/conf:/opt/adguardhome/conf
+      - ./adguard/certs:/certs
+    environment:
+      - ADGUARDHOME_TLS_KEY=/certs/privkey.pem
+      - ADGUARDHOME_TLS_CERT=/certs/fullchain.pem
+    restart: unless-stopped
+
+  unbound:
+    image: mvance/unbound:latest
+    container_name: unbound
+    ports:
+      - "5335:5335"
+    volumes:
+      - ./unbound:/opt/unbound/etc/unbound
+    restart: unless-stopped
+
+  backend:
+    build: .
+    container_name: zendns-api
+    ports:
+      - "8080:8080"
+      - "9001:9001"
+    restart: unless-stopped
+    env_file: .env
+
+networks:
+  default:
+    driver: bridge
