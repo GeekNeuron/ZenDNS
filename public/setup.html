@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZenDNS Setup</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; max-width: 600px; margin: auto; }
+    code { background: #f4f4f4; padding: 2px 6px; border-radius: 4px; }
+    .qr { text-align: center; margin: 1rem 0; }
+    .block { border: 1px solid #ddd; padding: 1rem; border-radius: 6px; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>ZenDNS Setup</h1>
+  <div class="block"><code>https://yourdomain.com/dns-query</code></div>
+  <div class="qr">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://yourdomain.com/dns-query&size=200x200" />
+  </div>
+  <h2>Android (RethinkDNS)</h2>
+  <ul>
+    <li>Install <a href="https://rethinkdns.com">RethinkDNS</a></li>
+    <li>Go to Settings → DNS → Custom DoH</li>
+    <li>Paste: <code>https://yourdomain.com/dns-query</code></li>
+    <li><a href="https://rethinkdns.com/configure?url=https://yourdomain.com/dns-query">Auto-import Link</a></li>
+  </ul>
+  <h2>iOS (DNSCloak)</h2>
+  <ul>
+    <li>Install <a href="https://apps.apple.com/app/dnscloak/id1452162351">DNSCloak</a></li>
+    <li>Use stamp:</li>
+    <div class="block">
+      <code>sdns://AgcAAA...yourdns</code>
+    </div>
+  </ul>
+  <h2>Download Config</h2>
+  <ul>
+    <li><a href="/zendns-config.json">JSON Config</a></li>
+    <li><a href="/dnscloak.txt">DNSCloak Stamp</a></li>
+  </ul>
+</body>
+</html>
