@@ -1,1 +1,25 @@
-Placeholder for package.json
+{
+  "name": "zendns",
+  "version": "1.0.0",
+  "description": "ZenDNS - Secure DNS Stack (AdGuard + Unbound + RethinkDNS)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start-api": "uvicorn api:app --host 0.0.0.0 --port 8080",
+    "start-ws": "python realtime_ws.py"
+  },
+  "author": "GeekNeuron",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "shadcn/ui": "*",
+    "recharts": "^2.5.0"
+  },
+  "devDependencies": {
+    "vite": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}
