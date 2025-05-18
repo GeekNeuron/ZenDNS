@@ -1,0 +1,14 @@
+{
+  "dns": {
+    "mode": "DOH",
+    "doh": {
+      "url": "https://yourdomain.com/dns-query",
+      "bootstrap": ["1.1.1.1", "9.9.9.9"]
+    }
+  },
+  "block": {
+    "type": "custom",
+    "url": "https://yourdomain.com/filters.yaml"
+  },
+  "logs": true
+}
