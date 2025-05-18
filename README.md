@@ -32,7 +32,7 @@ ZenDNS/
 
 ---
 
-Getting Started
+## Getting Started
 
 # 1. Clone and configure
 cp .env.example .env
@@ -50,7 +50,7 @@ docker compose -f docker-compose.prod.yml up -d
 
 ---
 
-Setup Clients
+## Setup Clients
 
 Android: RethinkDNS, import zendns-config.json
 
@@ -62,7 +62,7 @@ Windows/macOS/Linux: system DNS + https://yourdomain.com/dns-query
 
 ---
 
-CI/CD
+## CI/CD
 
 docker-publish.yml: build + push image to Docker Hub
 
@@ -74,7 +74,7 @@ test-lint.yml: run flake8 + pytest
 
 ---
 
-Deployment Options
+## Deployment Options
 
 Fully Dockerized: docker-compose.prod.yml
 
@@ -86,9 +86,9 @@ zen_minimal_dist.sh: make snapshot-only deployment
 
 ---
 
-License
+## License
 
-MIT
+MIT 2025
 
 
 ---
