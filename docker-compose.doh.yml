@@ -1,1 +1,15 @@
-Placeholder for docker-compose.doh.yml
+version: '3.9'
+
+services:
+  doh-server:
+    image: technitium/doh-server:latest
+    container_name: zendns-doh
+    ports:
+      - "853:853"
+      - "443:443"
+    volumes:
+      - ./doh/config:/etc/doh-server
+    environment:
+      - LISTEN_ADDRESSES=0.0.0.0
+      - UPSTREAM_DNS_SERVERS=127.0.0.1:5335
+    restart: unless-stopped
