@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=ZenDNS DNS Changer
+Exec=sh -c 'chmod +x ./dns_changer.sh && ./dns_changer.sh'
+Icon=utilities-terminal
+Terminal=true
+Type=Application
+Categories=Network;
