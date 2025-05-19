@@ -1,6 +1,6 @@
+# File: backend/geo_resolver.py
 import geoip2.database
 
-# GeoLite2-City.mmdb required
 reader = geoip2.database.Reader("GeoLite2-City.mmdb")
 
 def get_country(ip: str) -> str:
