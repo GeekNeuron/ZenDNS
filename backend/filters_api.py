@@ -1,4 +1,3 @@
-# File: backend/filters_api.py
 from fastapi import APIRouter, HTTPException
 import json
 from typing import List
