@@ -1,0 +1,10 @@
+{
+  "block": [
+    "ads.example.com",
+    "trackers.example.net"
+  ],
+  "allow": [
+    "zen.openai.com",
+    "cdn.cloudflare.com"
+  ]
+}
